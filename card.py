@@ -2,16 +2,23 @@ class Card:
     """ 
     Each playing card is represented as a a suit and a rank with
         Suits:  S , C , D , or H
-        Ranks : A , 2 ,3, 4, 5, 6, 7, 8, 9, 10, J, Q ,K
+        Value : 2 , 3 , 4, 5, 6, 7, 8, 9, 10, J, Q ,K ,A
     """
-    def __init__(self, suit, rank):
+    suit = None
+    value = 0
+    def __init__(self, suit, value):
         self.suit = suit
-        self.rank = rank
+        self.value = value
 
     # when passed through as a string, with suit followed by a space then the rank 
     def __init__(self,str):
         x = str.split()
         self.suit = x[0]
-        self.rank = x[1]
+        self.value = x[1]
 
-        
+    def getVal(self):
+        return self.value
+    
+    def getSuit(self):
+        return self.suit
+    
