@@ -22,11 +22,15 @@ def evaluate(hand,comm_cards):
 
     #Check for matches
     straight_check = set(hashed_cards.sort(card.getVal))
+    
     matches = list.ones(len(hashed_cards))
+    suitMatches = {"S":0, "H":0, "C":0 , "D":0}
     for c1 in range(len(hashed_cards)):
      for c2 in range(c1,len(hashed_cards)):
         if hashed_cards[c1].value == hashed_cards[c2].value:
            matches[c1] +=1
+        if hashed_cards[c1].suit == hashed_cards[c2].suit:
+            suitMatches[hashed_cards[c1].suit]+=1        
     pair = False
     trips = False
     for match in matches:
@@ -48,6 +52,11 @@ def evaluate(hand,comm_cards):
             hand.assignRanking(Rank.FULL_HOUSE)
         else:
             hand.assignRanking(Rank.PAIR)
+    for sM in suitMatches:
+        if sM == 5:
+            hand.assignRanking(Rank.FLUSH)
+            break 
+
     
     
 
